@@ -1,0 +1,98 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+p {
+  padding: 0;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.player-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.tab-container {
+  margin-bottom: 30em;
+  display: flex;
+  flex-direction: column;
+}
+
+/*tabs for the player*/
+.tab {
+  display: block;
+  border: 1px solid black;
+  border-top-left-radius: 25%;
+  border-bottom-left-radius: 25%;
+  padding: 2em;
+  text-decoration: none;
+  color: black;
+  margin: 0;
+}
+/* entire player box */
+.player {
+  border: 1px solid purple;
+  padding: 0em 2em;
+  padding-top: 2em;
+  text-align: center;
+  width: 18em;
+  height: 90vh;
+  overflow-y: scroll;
+
+  /* todo make th scroll wheel into a pokeball */
+}
+/* buttons on bottom of player box */
+.crud-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* each button selector */
+.mon-btn {
+  text-align: center;
+  width: 100%;
+  /* change this later */
+  padding: 0em 1.08em;
+  margin: 0;
+}
+/* .test:hover {
+  outline: 5px solid rgb(96, 146, 163);
+} */
+.pokeImg {
+  width: 5em;
+  padding: 0;
+  margin: 0;
+}
+.pokemon-current-search {
+  width: 16.97em;
+}
+/* forms from button */
+input {
+  width: 100px;
+}
+.show-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* crud-multi-box */
+.crud-multi-box {
+  border: 1px solid black;
+  width: 80vw;
+  height: 30vh;
+}
+.pokemonMember {
+  border: 1px solid rgb(0, 0, 0);
+}
+.load-player-btn {
+  display: flex;
+}

@@ -1,0 +1,17 @@
+@media only screen and (max-width: 420px) {
+  body {
+    background-color: lightblue;
+  }
+  .player {
+    border: 1px solid purple;
+    padding: 0em 2em;
+    padding-top: 0em;
+    text-align: center;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+}
