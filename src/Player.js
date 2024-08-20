@@ -5,7 +5,8 @@ import PokemonSearch from "./PokemonSearchBar.js";
 //import TestSearchBar from "./TestSearchBar.js";
 import useFetchUser from "./connectBack";
 //provides the pokemon two teams
-import { PokemonProvider, usePokemon } from "./PokemonContext.js";
+//! check later
+import { PokemonProvider /*,usePokemon*/ } from "./PokemonContext.js";
 
 // displays all info about the player
 export default function Player(prop) {
@@ -28,40 +29,40 @@ export default function Player(prop) {
     user && user.oneTrainer && user.oneTrainer.length > 0
       ? user.oneTrainer[0].membersCaughtCounter
       : "loading";
-  //todo fix later
-  const updateCounterBackCall = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3001/api/trainers/details/" + prop.name,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      //y
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+  //todo fix later the button for updating player data(may get rid of)
+  // const updateCounterBackCall = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost:3001/api/trainers/details/" + prop.name,
+  //       {
+  //         method: "PATCH",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     //y
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
 
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error updating counter:", error);
-      throw error;
-    }
-  };
+  //     const data = await response.json();
+  //     return data;
+  //   } catch (error) {
+  //     console.error("Error updating counter:", error);
+  //     throw error;
+  //   }
+  // };
 
-  const handleClick = async () => {
-    try {
-      const updatedTrainer = await updateCounterBackCall(prop.name);
-      console.log("Updated Trainer:", updatedTrainer);
-      // Optionally, update the state or UI with the updated trainer data
-    } catch (error) {
-      console.error("Failed to update counter:", error);
-    }
-  };
+  // const handleClick = async () => {
+  //   try {
+  //     const updatedTrainer = await updateCounterBackCall(prop.name);
+  //     console.log("Updated Trainer:", updatedTrainer);
+  //     // Optionally, update the state or UI with the updated trainer data
+  //   } catch (error) {
+  //     console.error("Failed to update counter:", error);
+  //   }
+  // };
   //flag function to set which tab the use is on
   function handleTab(num) {
     setTabNum(num);
@@ -98,7 +99,8 @@ export default function Player(prop) {
 function TeamMember({ name, tabNum }) {
   const { user } = useFetchUser(name);
   const [trainerPartyMembers, setTrainerPartyMembers] = useState([]);
-  const { pokemonList } = usePokemon();
+  //! check later
+  //const { pokemonList } = usePokemon();
   //0 means current members
   //1 means box members
   //2 means deadmembers
@@ -146,9 +148,10 @@ function TeamMember({ name, tabNum }) {
     // Add event listener to the document
     document.addEventListener("click", playAudio);
   };
-  const addPokemon = (newPokemon) => {
-    setTrainerPartyMembers((prevMembers) => [...prevMembers, newPokemon]);
-  };
+  //! check later
+  // const addPokemon = (newPokemon) => {
+  //   setTrainerPartyMembers((prevMembers) => [...prevMembers, newPokemon]);
+  // };
   //button to move party member to box
   // function moveToParty(member) {
 
@@ -388,18 +391,23 @@ function TeamMember({ name, tabNum }) {
 }
 
 function CrudSinglePlayer(prop) {
-  const { user } = useFetchUser(prop.name);
+  //! check later
+  //const { user } = useFetchUser(prop.name);
   //set to false when done testing
+
+  // eslint-disable-next-line
   const [showAddForm, setShowAddForm] = useState(true);
   const [showHamburger, setShowHamburger] = useState(true);
   function handleHamburger() {
     setShowHamburger(!showHamburger);
   }
-  function handleAdd() {
-    setShowAddForm(!showAddForm);
-  }
-  function handleUpdate() {}
-  function handleTrash() {}
+  //! check later
+  // function handleAdd() {
+  //   setShowAddForm(!showAddForm);
+  // }
+  //! check later
+  // function handleUpdate() {}
+  // function handleTrash() {}
   return (
     <div>
       <button onClick={handleHamburger}>Show Search</button>
@@ -426,11 +434,11 @@ function CrudSinglePlayer(prop) {
     </div>
   );
 }
-
-function CrudMultiplePlayer(prop) {
-  const { user } = useFetchUser(prop.name);
-  return <div className="crud-multi-box"></div>;
-}
+//! check later
+// function CrudMultiplePlayer(prop) {
+//   const { user } = useFetchUser(prop.name);
+//   return <div className="crud-multi-box"></div>;
+// }
 // export { CrudMultiplePlayer };
 
 /**
