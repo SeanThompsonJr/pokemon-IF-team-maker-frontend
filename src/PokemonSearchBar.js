@@ -100,7 +100,7 @@ export default function PokemonSearch({ name }) {
       // await user.save();
       //saving pokemon to db
       const response = await fetch(
-        "http://localhost:3001/api/trainers/pokemon/" + name,
+        process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemon/" + name,
         {
           method: "PATCH",
           headers: {

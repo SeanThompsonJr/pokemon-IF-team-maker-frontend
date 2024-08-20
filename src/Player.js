@@ -165,7 +165,7 @@ function TeamMember({ name, tabNum }) {
     try {
       //saving pokemon to db
       const response = await fetch(
-        "http://localhost:3001/api/trainers/pokemonbox/" + name,
+        process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemonbox/" + name,
         {
           method: "PATCH",
           headers: {
@@ -179,7 +179,7 @@ function TeamMember({ name, tabNum }) {
 
         // Remove the pokemon from the party
         const removeResponse = await fetch(
-          "http://localhost:3001/api/trainers/pokemon/" + name,
+          process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemon/" + name,
 
           {
             method: "DELETE",
@@ -212,7 +212,9 @@ function TeamMember({ name, tabNum }) {
     try {
       //saving pokemon to dead box
       const response = await fetch(
-        "http://localhost:3001/api/trainers/pokemondead/" + name,
+        process.env.REACT_APP_API_BASE_URL +
+          "/api/trainers/pokemondead/" +
+          name,
         {
           method: "PATCH",
           headers: {
@@ -226,7 +228,7 @@ function TeamMember({ name, tabNum }) {
 
         // Remove the pokemon from the party
         const removeResponse = await fetch(
-          "http://localhost:3001/api/trainers/pokemon/" + name,
+          process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemon/" + name,
 
           {
             method: "DELETE",
@@ -259,7 +261,7 @@ function TeamMember({ name, tabNum }) {
     try {
       //saving pokemon to party box
       const response = await fetch(
-        "http://localhost:3001/api/trainers/pokemon/" + name,
+        process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemon/" + name,
         {
           method: "PATCH",
           headers: {
@@ -273,7 +275,9 @@ function TeamMember({ name, tabNum }) {
 
         // Remove the pokemon from the party
         const removeResponse = await fetch(
-          "http://localhost:3001/api/trainers/pokemonbox/" + name,
+          process.env.REACT_APP_API_BASE_URL +
+            "/api/trainers/pokemonbox/" +
+            name,
 
           {
             method: "DELETE",
@@ -306,7 +310,7 @@ function TeamMember({ name, tabNum }) {
     try {
       //saving pokemon to party box
       const response = await fetch(
-        "http://localhost:3001/api/trainers/pokemonbox/" + name,
+        process.env.REACT_APP_API_BASE_URL + "/api/trainers/pokemonbox/" + name,
         {
           method: "PATCH",
           headers: {
@@ -320,7 +324,9 @@ function TeamMember({ name, tabNum }) {
 
         // Remove the pokemon from the party
         const removeResponse = await fetch(
-          "http://localhost:3001/api/trainers/pokemondead/" + name,
+          process.env.REACT_APP_API_BASE_URL +
+            "/api/trainers/pokemondead/" +
+            name,
 
           {
             method: "DELETE",

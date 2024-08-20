@@ -2,6 +2,7 @@ import "./css/App.css";
 import "./css/mobile.css";
 import Player from "./Player.js";
 import { useState, useEffect } from "react";
+// import "dotenv/config";
 function App() {
   //sets the loaded player number
   let [loadPlayer, setLoadPlayer] = useState(() => {
