@@ -10,7 +10,7 @@ const useFetchUser = (name) => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          "http://localhost:3001/api/trainers/" + name
+          process.env.REACT_APP_API_BASE_URL + "/api/trainers/" + name
         );
         const contentType = response.headers.get("content-type");
         if (
