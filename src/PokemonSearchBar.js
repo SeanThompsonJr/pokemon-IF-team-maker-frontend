@@ -13,7 +13,8 @@ export default function PokemonSearch({ name }) {
   const [img, setImg] = useState("imageUrl");
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonType, setPokemonType] = useState("");
-  const [fault, setFault] = useState("");
+  //!add later
+  // const [fault, setFault] = useState("");
   const { addPokemon } = usePokemon();
   //sets the data of first and second mon
   useEffect(() => {
@@ -91,7 +92,8 @@ export default function PokemonSearch({ name }) {
       img: img,
       pokemonName: pokemonName,
       pokemonType: pokemonType,
-      fault: fault,
+      //!add later
+      //fault: fault,
     };
     addPokemon(saveMon);
     try {
