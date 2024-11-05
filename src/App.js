@@ -1,9 +1,16 @@
+//!npm run start
 import "./css/App.css";
 import "./css/mobile.css";
+import "./css/Header.css";
+import pokemonBackground from "./pokemonAssets/pokeBG.png";
+import Header from "./header/Header.jsx";
 import Player from "./Player.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+import Footer from "./Footer.js";
+export const userNavContext = createContext();
 // import "dotenv/config";
 function App() {
+  //logic for loading the player
   //sets the loaded player number
   let [loadPlayer, setLoadPlayer] = useState(() => {
     const saved = window.localStorage.getItem("loadPlayerNumber");
@@ -15,38 +22,34 @@ function App() {
     window.localStorage.setItem("loadPlayerNumber", loadPlayer);
   }, [loadPlayer]);
 
-  //handles incrementing the loadplayer value when button is pressed
-  function handleLoadPlayer() {
-    setLoadPlayer((prevLoadPlayer) =>
-      prevLoadPlayer < 3 ? prevLoadPlayer + 1 : 0
-    );
-  }
   return (
     <div className="app">
-      <button className="load-player-btn" onClick={handleLoadPlayer}>
-        test {loadPlayer}
-      </button>
-      <div className="player-container">
-        {
-          //if loadplayer is 0 then load all
-          loadPlayer === 0 && (
-            <>
-              <Player name="sean"></Player>
-              <Player name="braden"></Player>
-              <Player name="gerald"></Player>
-            </>
-          )
-        }
-        {/* if loadplayer is x number then load x player */}
-        {loadPlayer === 1 && <Player name="sean"></Player>}
-        {loadPlayer === 2 && <Player name="braden"></Player>}
-        {loadPlayer === 3 && <Player name="gerald"></Player>}
-      </div>
-      {/* <CrudMultiplePlayer></CrudMultiplePlayer> */}
+      <userNavContext.Provider value={{ loadPlayer, setLoadPlayer }}>
+        <Header />
+
+        <div className="player-container">
+          {
+            //if loadplayer is 0 then load all
+            loadPlayer === 0 && (
+              <>
+                <Player name="sean"></Player>
+                <Player name="braden"></Player>
+                <Player name="gerald"></Player>
+              </>
+            )
+          }
+          {/* if loadplayer is x number then load x player */}
+          {loadPlayer === 1 && <Player name="sean"></Player>}
+          {loadPlayer === 2 && <Player name="braden"></Player>}
+          {loadPlayer === 3 && <Player name="gerald"></Player>}
+        </div>
+        {/* <CrudMultiplePlayer></CrudMultiplePlayer> */}
+      </userNavContext.Provider>
+      <Footer></Footer>
     </div>
   );
 }
-
+export { App };
 //// display the info
 ////  fix the poke member images
 //// save the image url in the database so it can be loaded with the player when added
@@ -68,9 +71,16 @@ function App() {
 
 //// make the controller functions for adding and moving mon increment and decrement dead, alive and caught counter
 
-//! todo deploy to railway
-// railway video - https://www.youtube.com/watch?v=Fiou_EHUv4c
-// other deploying software - https://www.youtube.com/watch?v=MusIvEKjqsc
+////  deploy to railway
+//// change the player stats to pokemon font
+//// use usecontext to make the the header nav work
+//todo give the ability to search mon in the headers top right form
+//| you can only add mons when selected on one user
+//todo add search auto complete
+//todo fix the "oricorio (baile)" and mons similar in pokemonID.js
+//todo make the resulting head and body mon text to lowercase
+//// railway video - https://www.youtube.com/watch?v=Fiou_EHUv4c
+// //other deploying software - https://www.youtube.com/watch?v=MusIvEKjqsc
 //todo make it so party members can't have more than two types
 
 //todo switch the display party with the details like death counter and make details a hamburger menu

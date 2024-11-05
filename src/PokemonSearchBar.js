@@ -5,14 +5,19 @@ import pokemonInfiniteFusion from "./pokemonID";
 export default function PokemonSearch({ name }) {
   //!user and pokemon searching
   const { user, error, isLoading } = useFetchUser(name);
+  //the names of the mons
   const [firstMon, setFirstMon] = useState("");
   const [secondMon, setSecondMon] = useState("");
+  //the data we fetch from them
   const [firstMonData, setFirstMonData] = useState(null);
   const [secondMonData, setSecondMonData] = useState(null);
   //? for savinging pokemon
   const [img, setImg] = useState("imageUrl");
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonType, setPokemonType] = useState("");
+  //for search bar
+  const [isFocused, setIsFocused] = useState(false);
+
   //!add later
   // const [fault, setFault] = useState("");
   const { addPokemon } = usePokemon();
@@ -82,6 +87,7 @@ export default function PokemonSearch({ name }) {
   };
 
   //! saving pokemon to database
+  //! i basically want this whole function to the header
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!pokemonName) {
@@ -96,6 +102,7 @@ export default function PokemonSearch({ name }) {
       //fault: fault,
     };
     addPokemon(saveMon);
+    //! this adds pokemon to the user
     try {
       // await user.save();
       //saving pokemon to db
@@ -119,18 +126,6 @@ export default function PokemonSearch({ name }) {
     }
     window.location.reload(true);
   };
-  // const gill = {
-  //   property1: "too", // property name may be an identifier
-  //   2: "floo", // or a number
-  //   property: "not", // or a string
-  // };
-  // const bull = {};
-
-  // for (const [name, id] of Object.entries(gill)) {
-  //   bull[id] = name;
-  // }
-  // console.log(bull.too);
-  // console.log(pokemonInfiniteFusion["bulbasaur"]);
 
   //copy of the fallback image for the js
   const handleError = () => {
@@ -145,25 +140,48 @@ export default function PokemonSearch({ name }) {
     }.png`;
     setImg(fallbackImageUrl);
   };
+
+  //|forgot what this is for
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
   return (
-    <div>
+    <div className="pokemon-search-bar">
       {}
       <h1>Pokemon Search</h1>
-      <button type="button" onClick={handleSearch}>
-        Search
-      </button>
-      <input
+
+      <input //! working here
         id="firstMon"
-        placeholder="Head Mon"
+        placeholder="Enter Head Mon"
         value={firstMon}
         onChange={handleFirstMonChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        className="mon-input"
       />
+      {/* {!isFocused && (
+        <div className="suggestion-box">
+          {Object.entries(pokemonInfiniteFusion).map(([key, value]) => (
+            <ul key={key}>
+              <li>{key}</li>
+            </ul>
+          ))}
+        </div>
+      )} */}
       <input
         id="secondMon"
-        placeholder="body Mon"
+        placeholder="Enter body Mon"
         value={secondMon}
         onChange={handleSecondMonChange}
+        className="mon-input"
       />
+      <button type="button" onClick={handleSearch} className="search-btn">
+        Search
+      </button>
       {firstMonData && secondMonData && (
         <div>
           <h3>{firstMonData.name}</h3>
@@ -174,31 +192,32 @@ export default function PokemonSearch({ name }) {
             onError={handleError}
             alt={`${firstMonData.name} and ${secondMonData.name}`}
           />
-          <form onSubmit={handleSubmit}>
-            <label>what is the group naming of this pokemon</label>
-            <input
+          <form onSubmit={handleSubmit} className="mon-submit-form">
+            <label>what is the group naming of this pokemon?</label>
+            {/* <input
               type="text"
               placeholder="pokemonimg"
               value={img} //setImg(e.target.value)
               onChange={(e) => setImg(e.target.value)}
               disabled
-            ></input>
+            ></input> */}
             <input
               type="text"
               placeholder="groupName"
               value={pokemonName}
               onChange={(e) => setPokemonName(e.target.value)}
               required
+              className="mon-group-name"
             ></input>
-            <input
+            {/* <input
               type="text"
               placeholder="pokemonType"
               value={pokemonType}
               onChange={(e) => setPokemonType(e.target.value)}
               disabled
-            ></input>
+            ></input> */}
 
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit} className="submit-btn">
               submit to party
             </button>
           </form>

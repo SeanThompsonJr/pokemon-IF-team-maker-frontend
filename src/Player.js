@@ -1,5 +1,8 @@
 //todo make the trainer stats loop instead of each individual one(make it easier to read)
 import React, { useState, useEffect } from "react";
+
+import pokemonBackground from "./pokemonAssets/pokeBG.png";
+
 //import LazyLoad from "react-lazyload";
 import PokemonSearch from "./PokemonSearchBar.js";
 //import TestSearchBar from "./TestSearchBar.js";
@@ -71,20 +74,20 @@ export default function Player(prop) {
     <>
       <div className="tab-container">
         <button onClick={() => handleTab(0)} className="tab">
-          current members {tabNum}
+          current members
         </button>
         <button onClick={() => handleTab(1)} className="tab">
           box members
         </button>
         <button onClick={() => handleTab(2)} className="tab">
-          dead members
+          fainted members
         </button>
       </div>
       <div className="player">
-        <p>{prop.name}</p>
-        <p>death counter : {trainerDeathCounter}</p>
-        <p>alive counter : {trainerAliveCounter}</p>
-        <p>members caught: {trainerMemberCounter}</p>
+        <p className="stats">{prop.name}</p>
+        <p className="stats">death counter : {trainerDeathCounter}</p>
+        <p className="stats">alive counter : {trainerAliveCounter}</p>
+        <p className="stats">members caught: {trainerMemberCounter}</p>
         {/* <button onClick={handleClick}>increment death & decrement alive</button> */}
         <div>current party</div>
         <PokemonProvider>
@@ -362,19 +365,33 @@ function TeamMember({ name, tabNum }) {
       {trainerPartyMembers.map((member) => (
         <div key={member._id + getRandomInt(123)}>
           {/*console.log(member)*/}
-          <p>{getCry(member)}</p>
-          <img
-            onClick={() => playSound(member)}
-            muted
-            src={member.img}
-            className="pokeImg"
-            alt={`img of ${member.img}`}
-          ></img>
-
+          {/* <p>{getCry(member)}</p> */}
+          <p>{member.pokemonType}</p>
+          <div className="pokeImg-container">
+            <img src={pokemonBackground} className="pokeBack"></img>
+            <img
+              onClick={() => playSound(member)}
+              muted
+              src={member.img}
+              className="pokeImg"
+              alt={`img of ${member.img}`}
+            ></img>
+            <p className="pokeName">{member.pokemonName}</p>
+          </div>
           {tabNum === 0 && (
             <div>
-              <button onClick={() => moveToBox(member)}>add to pc</button>
-              <button onClick={() => moveToDead(member)}>dieded</button>
+              <button
+                className="boxBtn monBtn"
+                onClick={() => moveToBox(member)}
+              >
+                add to pc
+              </button>
+              <button
+                className="deadBtn monBtn"
+                onClick={() => moveToDead(member)}
+              >
+                dieded
+              </button>
             </div>
           )}
           {tabNum === 1 && (
@@ -387,9 +404,6 @@ function TeamMember({ name, tabNum }) {
               revive to party
             </button>
           )}
-
-          <p>{member.pokemonName}</p>
-          <p>{member.pokemonType}</p>
         </div>
       ))}
     </div>
@@ -416,7 +430,9 @@ function CrudSinglePlayer(prop) {
   // function handleTrash() {}
   return (
     <div>
-      <button onClick={handleHamburger}>Show Search</button>
+      <button onClick={handleHamburger} className="show-search-btn">
+        Show Search
+      </button>
       {/* {showHamburger && (
         // <div className="crud-btn-container">
         //   <button onClick={handleAdd} className="add-btn mon-btn">
